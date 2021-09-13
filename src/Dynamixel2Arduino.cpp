@@ -125,7 +125,7 @@ Dynamixel2Arduino::Dynamixel2Arduino(HardwareSerial& port, int dir_pin, uint16_t
 }
 
 /* For Master configuration */
-void Dynamixel2Arduino::begin(unsigned long baud)
+void Dynamixel2Arduino::begin(unsigned long baud, uint32_t config, int8_t rxPin, int8_t txPin, bool invert, unsigned long timeout_ms)
 {
   p_dxl_port_ = (SerialPortHandler*)getPort();
 
@@ -134,7 +134,7 @@ void Dynamixel2Arduino::begin(unsigned long baud)
     return;
   }
 
-  p_dxl_port_->begin(baud);
+  p_dxl_port_->begin(baud, config, rxPin, txPin, invert, timeout_ms);
 }
 
 unsigned long Dynamixel2Arduino::getPortBaud()

@@ -29,7 +29,7 @@ void SerialPortHandler::begin()
   begin(baud_);
 }
 
-void SerialPortHandler::begin(unsigned long baud)
+void SerialPortHandler::begin(unsigned long baud, uint32_t config, int8_t rxPin, int8_t txPin, bool invert, unsigned long timeout_ms)
 {
 #if defined(ARDUINO_OpenCM904)
   if(port_ == Serial1 && getOpenState() == false){
@@ -44,7 +44,7 @@ void SerialPortHandler::begin(unsigned long baud)
 #endif
 
   baud_ = baud;
-  port_.begin(baud_);
+  port_.begin(baud_, config, rxPin, txPin, invert, timeout_ms);
   
   if(dir_pin_ != -1){
     pinMode(dir_pin_, OUTPUT);
